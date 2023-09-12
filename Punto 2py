@@ -1,0 +1,29 @@
+print("Bienvenido a los mejores salpicones")
+
+numFrutas = int(input("Agregue cantidad de frutas: "))
+frutas = []
+
+for i in range(numFrutas):
+    id_fruta = int(input(f"Digite el ID de la fruta {i + 1}: "))
+    nombre_fruta = input(f"Digite el nombre de la fruta {i + 1}: ")
+    precio_fruta = float(input(f"Digite el precio unitario de la fruta {nombre_fruta}: "))
+    cantidad_frutas = int(input(f"Digite la cantidad de {nombre_fruta}: "))
+    frutas.append({'ID': id_fruta, 'Nombre': nombre_fruta, 'Precio Unitario': precio_fruta, 'Cantidad': cantidad_frutas})
+
+costoTotal = sum(fruta['Precio Unitario'] * fruta['Cantidad'] for fruta in frutas)
+
+# Costo total
+print(f"El costo total del salpicon es de ${costoTotal:.2f}")
+
+# Frutas de mayor a menor precio
+frutasOrdenadas = sorted(frutas, key=lambda x: x['Precio Unitario'], reverse=True)
+print("\nFrutas de mayor a menor precio:")
+for fruta in frutasOrdenadas:
+    print(f"{fruta['Nombre']}: ${fruta['Precio Unitario']:.2f}")
+
+# Fruta más barata y más cara
+frutaCara = max(frutas, key=lambda x: x['Precio Unitario'])
+frutaBarata = min(frutas, key=lambda x: x['Precio Unitario'])
+
+print(f"\nLa fruta más barata es {frutaBarata['Nombre']} con un precio de ${frutaBarata['Precio Unitario']:.2f}")
+print(f"La fruta más cara es {frutaCara['Nombre']} con un precio de ${frutaCara['Precio Unitario']:.2f}")
